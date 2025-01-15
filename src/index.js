@@ -1,6 +1,7 @@
-import { taskLists, createTask, createList } from './taskFactory.js';
+import { toDoManager } from "./toDoManager.js";
 
-createList('default');
-const task1 = createTask('test', "task's description", 'today', 'high');
-console.log(task1);
-console.log(taskLists);
+const newProject = toDoManager.createProject('testProject');
+
+toDoManager.addToDo('test', 'description', 'testProject');
+
+console.log(newProject)
