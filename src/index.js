@@ -1,7 +1,12 @@
+import "/styles/styles.css";
 import { toDoManager } from "./toDoManager.js";
 
-const newProject = toDoManager.createProject('testProject');
+// Console usage in Chrome DevTool
+window.toDoManager = toDoManager;
 
-toDoManager.addToDo('test', 'description', 'testProject');
+toDoManager.addToDo()
+toDoManager.addToDo()
+toDoManager.addToDo()
+toDoManager.addToDo()
 
-console.log(newProject)
+toDoManager.printToDos()
