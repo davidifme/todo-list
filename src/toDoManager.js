@@ -1,9 +1,21 @@
 import { idGenerator } from "./idGenerator.js";
 
 export const toDoManager = (function() {
-    const toDoProjects = [];
-
+    let toDoProjects = [];
     const defaultProject = createProject('Default');
+    let currentProject = defaultProject;
+
+    function getProjects() {
+        return toDoProjects;
+    }
+
+    function setCurrentProject(project) {
+        currentProject = project;
+    }
+
+    function getCurrentProject() {
+        return currentProject;
+    }
 
     function createToDo
         (title = 'New Task',
@@ -274,8 +286,11 @@ export const toDoManager = (function() {
         setNoteText,
         moveToDo,
         toggleComplete,
-        printToDos,
+        getProjects,
         cleanProject,
-        printProjects
+        setCurrentProject,
+        getCurrentProject,
+        printProjects,
+        printToDos
     };
 })();
