@@ -1,0 +1,33 @@
+input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox-wrapper label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-checkbox {
+    width: 25px;
+    height: 25px;
+    border: 2px solid #b9b9b9;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="checkbox"]:checked + .custom-checkbox {
+    background-color: #c2cfab;
+}
+
+.custom-checkbox:hover {
+    background-color: #e6f0ff;
+}

@@ -6,6 +6,58 @@
     <title>ToDo List</title>
 </head>
 <body>
-    
+    <div id="main-container">
+        <aside id="sidebar">
+            <!-- Sidebar buttons will be generated automatically -->
+        </aside>
+
+        <main id="content">
+            <div id="title-container">
+                <h1 id="title">Project name</h1>
+                <button>
+                    <img id="new-icon" src="/images/new.svg" alt="new-icon">
+                </button>
+            </div>
+            <div id="cards">
+                <!-- Cards will be generated automatically -->
+            </div>
+        </main>
+
+        <dialog id="modal">
+            <aside id="modal-sidebar">
+                <button id="modal-project-button">PROJECT</button>
+                <img src="/images/edit-img.png" alt="edit-mode-image">
+                <button id="modal-task-button">TASK</button>
+            </aside>
+            <main id="modal-content">
+                <form method="dialog" id="task-form">
+                    <div>
+                        <label for="modal-task-title">Title</label>
+                        <input type="text" name="modal-task-title" id="modal-task-title">
+                    </div>
+                    <div>
+                        <label for="modal-task-description">Description</label>
+                        <input type="text" name="modal-task-description" id="modal-task-description">
+                    </div>
+                    <div>
+                        <label for="modal-task-duedate">Due date</label>
+                        <input type="date" name="modal-task-duedate" id="modal-task-duedate">
+                    </div>
+                    <div id="modal-task-buttons">
+                        <input type="radio" name="low-priority" id="low-priority" value="low">
+                        <label for="low-priority">Low</label>
+                        <input type="radio" name="medium-priority" id="medium-priority" value="medium">
+                        <label for="medium-priority">Medium</label>
+                        <input type="radio" name="high-priority" id="high-priority" value="high">
+                        <label for="high-priority">High</label>
+                    </div>
+                    <div id="modal-buttons">
+                        <button type="submit" id="modal-submit-button">Save</button>
+                        <button type="button" id="modal-cancel-button">Cancel</button>
+                    </div>
+                </form>
+            </main>
+        </dialog>
+    </div>
 </body>
 </html>

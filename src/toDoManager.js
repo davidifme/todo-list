@@ -60,7 +60,7 @@ export const toDoManager = (function() {
         return undefined;
     }
 
-    function createToDo(title = 'New task', description, dueDate, priority, id = idGenerator.generateUniqueId()) {
+    function createToDo(title = 'New task', description, dueDate, priority = 'low', id = idGenerator.generateUniqueId()) {
         return {
             title,
             description,
@@ -92,6 +92,10 @@ export const toDoManager = (function() {
         currentProject = project;
     }
 
+    function getProjects() {
+        return projects;
+    }
+
     function printTasks() {
         projects.forEach(project => {
             console.log(`Project title: "${project.title}" | ID: ${project.id}`);
@@ -106,6 +110,7 @@ export const toDoManager = (function() {
     return {
         getCurrentProject,
         setCurrentProject,
+        getProjects,
         addTask,
         removeTask,
         moveTask,
