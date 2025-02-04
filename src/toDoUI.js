@@ -456,10 +456,33 @@ export const toDoUI = (function() {
             renderAllTasks();
         });
 
+        todayBtn.addEventListener('click', () => {
+            renderToDayTasks();
+        });
+
+        scheduledBtn.addEventListener('click', () => {
+            renderScheduledTasks();
+        });
+
         projectsBtn.addEventListener('click', () => {
             renderProjects();
             setupProjectEditButtons();
         });
+    }
+
+    function renderScheduledTasks() {
+        const scheduledTasks = toDoManager.getAllTasks().filter(task => {
+            const taskDate = new Date(task.dueDate);
+            const today = new Date();
+            return taskDate > today;
+        });
+        renderTaskList(scheduledTasks, 'Scheduled');
+    }
+
+    function renderToDayTasks() {
+        const today = new Date().toISOString().split('T')[0];
+        const todayTasks = toDoManager.getAllTasks().filter(task => task.dueDate === today);
+        renderTaskList(todayTasks, 'Today');
     }
 
     function setupProjectEditButtons() {
