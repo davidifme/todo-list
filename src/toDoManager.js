@@ -107,9 +107,7 @@ export const toDoManager = (function() {
     }
 
     function getProjectByID(id) {
-        id = Number(id); // Ensure ID is a number
-        console.log('Searching for project with ID:', id); // Add this line for debugging
-        console.log('Projects:', projects); // Add this line for debugging
+        id = Number(id);
         for (let project of projects) {
             if (project.id === id) {
                 return project;
@@ -149,9 +147,7 @@ export const toDoManager = (function() {
         };
 
         projects.push(newProject);
-        console.log('Project created:', newProject); // Add this line for debugging
-        console.log('All projects:', projects); // Add this line for debugging
-        // console.log(`Project: "${newProject.title}" has been created with ID: ${newProject.id}`);
+        console.log(`Project: "${newProject.title}" has been created with ID: ${newProject.id}`);
 
         return newProject;
     }

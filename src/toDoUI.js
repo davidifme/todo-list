@@ -470,8 +470,6 @@ export const toDoUI = (function() {
                 const projectId = button.closest('.card-container').dataset.projectId;
                 currentProjectID = projectId;
     
-                console.log(`Editing project with ID: ${currentProjectID}`); // Dodaj to logowanie
-    
                 renderProjectModal();
     
                 const modalForm = document.getElementById('task-form');
@@ -479,32 +477,13 @@ export const toDoUI = (function() {
     
                 const currentProject = toDoManager.getProjectByID(currentProjectID);
     
-                if (!currentProject) {
-                    console.error(`Project with ID ${currentProjectID} not found`); // Dodaj to logowanie
-                    return;
-                }
-    
-                console.log(`Current project: ${JSON.stringify(currentProject)}`); // Dodaj to logowanie
-    
                 const editProjectTitle = document.getElementById('modal-task-title');
-                if (!editProjectTitle) {
-                    console.error('Modal task title input not found'); // Dodaj to logowanie
-                    return;
-                }
                 editProjectTitle.value = currentProject.title;
     
                 const editProjectDescription = document.getElementById('modal-task-description');
-                if (!editProjectDescription) {
-                    console.error('Modal task description textarea not found'); // Dodaj to logowanie
-                    return;
-                }
                 editProjectDescription.value = currentProject.description;
     
                 const modal = document.getElementById('modal');
-                if (!modal) {
-                    console.error('Modal element not found'); // Dodaj to logowanie
-                    return;
-                }
                 modal.showModal();
             });
         });
