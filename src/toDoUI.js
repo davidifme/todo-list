@@ -483,6 +483,11 @@ export const toDoUI = (function() {
     
                 const editProjectDescription = document.getElementById('modal-task-description');
                 editProjectDescription.value = currentProject.description;
+
+                const taskButton = document.querySelector('.modal-task-button');
+                const projectButton = document.querySelector('.modal-project-button');
+                taskButton.classList.toggle('button-on', false);
+                projectButton.classList.toggle('button-on', true);
     
                 const modal = document.getElementById('modal');
                 modal.showModal();
@@ -511,11 +516,18 @@ export const toDoUI = (function() {
 
             tasksCounterDiv.appendChild(taskCounter);
 
+            const headingButton = createDomElement('button', { class: 'card-heading-button' });
             const heading = createDomElement('h3');
             heading.textContent = project.title;
+            headingButton.appendChild(heading);
+
+            headingButton.addEventListener('click', () => {
+                toDoManager.setCurrentProject(project);
+                renderUI();
+            });
             
             leftDiv.appendChild(tasksCounterDiv);
-            leftDiv.appendChild(heading);
+            leftDiv.appendChild(headingButton);
             
             const rightDiv = createDomElement('div', { class: 'right' });
             
