@@ -1,0 +1,242 @@
+#modal {
+    display: flex;
+    margin: 0;
+    padding: 0px;
+    
+    border: none;
+
+    width: 800px;
+    height: 600px;
+
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#modal-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: #d7cfc3;
+    width: 400px;
+
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+#modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    width: 100%;
+}
+
+/* Form */
+#task-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 20px;
+}
+
+/* Basic Reset */
+.form-container input, 
+.form-container textarea {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Styling the input elements */
+.form-container input[type="text"],
+.form-container input[type="date"],
+.form-container textarea {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+    resize: vertical;
+}
+
+.form-container textarea {
+    height: 100px;
+    max-height: 150px;
+}
+
+/* Focus state for all inputs and textarea */
+.form-container input[type="text"]:focus,
+.form-container input[type="date"]:focus,
+.form-container textarea:focus {
+    border-color: #41484f;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Placeholder styling for all inputs and textarea */
+.form-container input::placeholder,
+.form-container textarea::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+/* Disabled state for all inputs and textarea */
+.form-container input:disabled,
+.form-container textarea:disabled {
+    background-color: #e0e0e0;
+    color: #999;
+    cursor: not-allowed;
+}
+
+#modal-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Radio Buttons */
+
+#low {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+#high {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+#modal-task-buttons {
+    display: flex;
+    gap: 0;
+    margin: 15px 0;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+#modal-task-buttons label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ddd;
+    color: #333;
+    border: 2px solid transparent;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s, border 0.3s, filter 0.3s;
+}
+
+input[type="radio"]#low-priority + label {
+    background-color: #BFC6B3;
+}
+
+input[type="radio"]#medium-priority + label {
+    background-color: #C9A798;
+}
+
+input[type="radio"]#high-priority + label {
+    background-color: #E57261;
+}
+
+input[type="radio"]#low-priority:checked + label {
+    border: solid 2px #666362;
+}
+
+input[type="radio"]#medium-priority:checked + label {
+    border: solid 2px #666362;
+}
+
+input[type="radio"]#high-priority:checked + label {
+    border: solid 2px #666362;
+}
+
+#modal-task-buttons label:hover {
+    filter: brightness(1.1);
+}
+
+/* Image */
+#modal img {
+    width: 200px;
+    height: 200px;
+}
+
+/* Form buttons */
+#modal-buttons button {
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#modal-submit-button {
+    background-color: #6DE0C0;
+}
+
+#modal-submit-button:hover {
+    background-color: #58c4a8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#modal-cancel-button {
+    background-color: #FF5555;
+}
+
+#modal-cancel-button:hover {
+    background-color: #e04444;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Side Buttons */
+.modal-project-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: inherit;
+    height: 75px;
+    width: 100%;
+    font-size: 40px;
+    color: #4F4F4F;
+
+    border-top-left-radius: 12px;
+    border-bottom: 1px solid white;
+}
+
+.modal-task-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: inherit;
+    height: 75px;
+    width: 100%;
+    font-size: 40px;
+    color: #4F4F4F;
+
+    border-bottom-left-radius: 12px;
+    border-top: 1px solid white;
+}
+
+.button-on {
+    background-color: #c9c6ae;
+}

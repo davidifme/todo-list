@@ -6,8 +6,8 @@ export const toDoManager = (function() {
     let defaultProject = createProject('Default')
     let currentProject = defaultProject;
     
-    function addTask(title, description, dueDate, priority, projectID) {
-        const newTask = createToDo(title, description, dueDate, priority);
+    function addTask(title = "New Task", description = "", dueDate = new Date().toISOString().split('T')[0], priority = "low", projectID) {
+        const newTask = createToDo(title, description, dueDate, priority, false);
 
         if (!projectID) {
             getCurrentProject().tasks.push(newTask);
@@ -31,6 +31,61 @@ export const toDoManager = (function() {
             }
         }));
     }
+
+    function removeProject(id) {
+        projects.forEach((project, projectIndex) => {
+            if (project.id === id) {
+                let removedProjectTitle = project.title;
+                projects.splice(projectIndex, 1);
+                console.log(`"${removedProjectTitle}" has been removed`);
+            }
+        });
+    }
+    
+
+    function editTask(item, text, id) {
+        for (const project of projects) {
+            const toDo = project.tasks.find(task => task.id === id);
+            if (toDo) {
+                switch (item) {
+                    case 'title':
+                        toDo.title = text;
+                        break;
+                    case 'description':
+                        toDo.description = text;
+                        break;
+                    case 'duedate':
+                        toDo.dueDate = text;
+                        break;
+                    case 'priority':
+                        toDo.priority = text;
+                        break;
+                    default:
+                        console.error('Invalid item');
+                }
+                break;
+            }
+        }
+    }
+
+    function editProject(item, text, id) {
+        const project = getProjectByID(id);
+        if (project) {
+            switch (item) {
+                case 'title':
+                    project.title = text;
+                    break;
+                case 'description':
+                    project.description = text;
+                    break;
+                default:
+                    console.error('Invalid item');
+            }
+        } else {
+            console.error('Project not found');
+        }
+    }
+    
 
     function moveTask(taskID, projectID) {
         const task = getTaskByID(taskID);
@@ -60,15 +115,27 @@ export const toDoManager = (function() {
         return undefined;
     }
 
-    function createToDo(title = 'New task', description, dueDate, priority = 'low', id = idGenerator.generateUniqueId()) {
+    function getAllTasks() {
+        return projects.flatMap(project => project.tasks);
+    }
+
+    function createToDo(
+        title = 'New task',
+        description,
+        dueDate = new Date().toISOString().split('T')[0],
+        priority = 'low',
+        completed = false,
+        id = idGenerator.generateUniqueId()
+    ) {
         return {
             title,
             description,
             dueDate,
             priority,
+            completed,
             id
         };
-    }
+    }    
 
     function createProject(title = 'New Project', description = '') {
         let newProject = {
@@ -79,7 +146,7 @@ export const toDoManager = (function() {
         };
 
         projects.push(newProject);
-        console.log(`Project: "${newProject.title}" has been created`);
+        console.log(`Project: "${newProject.title}" has been created with ID: ${newProject.id}`);
 
         return newProject;
     }
@@ -94,6 +161,10 @@ export const toDoManager = (function() {
 
     function getProjects() {
         return projects;
+    }
+
+    function setProjects(updatedProjects) {
+        projects = updatedProjects;
     }
 
     function printTasks() {
@@ -111,11 +182,18 @@ export const toDoManager = (function() {
         getCurrentProject,
         setCurrentProject,
         getProjects,
+        setProjects,
+        getAllTasks,
+        getTaskByID,
+        getProjectByID,
         addTask,
+        editTask,
+        editProject,
         removeTask,
+        removeProject,
         moveTask,
         createProject,
         printTasks,
         printProjects
     };
-})();
+})();   

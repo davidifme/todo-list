@@ -31,3 +31,39 @@ input[type="checkbox"]:checked + .custom-checkbox {
 .custom-checkbox:hover {
     background-color: #e6f0ff;
 }
+
+/* Checked Task */
+.checked {
+    background-color: #f0f6f0;
+    border-left: 4px solid #4caf50;
+    color: #333;
+    opacity: 0.9;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.checked:hover {
+    background-color: #e9fce9;
+}
+
+.checked h3,
+.checked h4,
+.checked .task-description-text {
+    text-decoration: line-through;
+    color: #777;
+}
+
+/* ToDo Remove Animation */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+.fade-out {
+    animation: fadeOut 1s ease forwards;
+}
