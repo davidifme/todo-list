@@ -471,6 +471,7 @@ export const toDoUI = (function() {
                 currentProjectID = projectId;
     
                 renderProjectModal();
+                setupModal();
     
                 const modalForm = document.getElementById('task-form');
                 modalForm.dataset.type = 'projectEdit';
