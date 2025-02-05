@@ -13,9 +13,11 @@ import "/styles/projects.css";
 window.toDoManager = toDoManager;
 window.toDoUI = toDoUI;
 
-toDoManager.addTask('Task', 'Analyze and compare funding rates across major exchanges. Identify discrepancies, optimize your trading costs, and leverage market opportunities. Perfect for arbitrage and strategic insights.')
-toDoManager.addTask('Task', 'Analyze and compare funding rates across major exchanges. Identify discrepancies, optimize your trading costs, and leverage market opportunities. Perfect for arbitrage and strategic insights.')
+if (localStorage.getItem('projects')) {
+    toDoManager.setProjects(JSON.parse(localStorage.getItem('projects')));
+    toDoManager.setCurrentProject(toDoManager.getProjects()[0]);
+} else {
+    localStorage.setItem('projects', JSON.stringify(toDoManager.getProjects()));
+}
 
-toDoManager.createProject('Project 2')
-
-toDoUI.renderUI()
+toDoUI.renderUI();

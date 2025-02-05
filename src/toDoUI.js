@@ -323,6 +323,7 @@ export const toDoUI = (function() {
                     const formTaskPriority = formData.get('priority');
         
                     toDoManager.addTask(formTaskTitle, formTaskDescription, formTaskDueDate, formTaskPriority);
+                    toDoManager.saveToLocalStorage();
         
                     const taskButton = document.querySelector('.modal-task-button');
                     taskButton.classList.toggle('button-on', false);
@@ -343,6 +344,7 @@ export const toDoUI = (function() {
                     toDoManager.editTask('description', formTaskDescription, currentTaskID);
                     toDoManager.editTask('duedate', formTaskDueDate, currentTaskID);
                     toDoManager.editTask('priority', formTaskPriority, currentTaskID);
+                    toDoManager.saveToLocalStorage();
     
                     const taskButton = document.querySelector('.modal-task-button');
                     taskButton.classList.toggle('button-on', false);
@@ -360,6 +362,7 @@ export const toDoUI = (function() {
     
                     const newProject = toDoManager.createProject(formProjectTitle, formProjectDescription);
                     toDoManager.setCurrentProject(newProject);
+                    toDoManager.saveToLocalStorage();
     
                     const projectButton = document.querySelector('.modal-project-button');
                     projectButton.classList.toggle('button-on', false);
@@ -376,6 +379,7 @@ export const toDoUI = (function() {
     
                     toDoManager.editProject('title', formProjectTitle, currentProjectID);
                     toDoManager.editProject('description', formProjectDescription, currentProjectID);
+                    toDoManager.saveToLocalStorage();
     
                     const projectButton = document.querySelector('.modal-project-button');
                     projectButton.classList.toggle('button-on', false);

@@ -2,9 +2,32 @@ import { idGenerator } from "./idGenerator";
 
 export const toDoManager = (function() {
 
-    const projects = [];
+    let projects = [];
     let defaultProject = createProject('Default')
     let currentProject = defaultProject;
+
+    function saveToLocalStorage() {
+        console.log('Saving projects to localStorage:', projects);
+        localStorage.setItem('projects', JSON.stringify(projects));
+    }
+
+    function loadFromLocalStorage() {
+        const storedProjects = localStorage.getItem('projects');
+        if (storedProjects) {
+            projects = JSON.parse(storedProjects);
+            console.log('Loaded projects from localStorage:', projects);
+            currentProject = projects.find(project => project.id === currentProject.id) || projects[0] || defaultProject;
+        } else {
+            projects.push(defaultProject);
+            currentProject = defaultProject;
+        }
+    }
+
+    loadFromLocalStorage();
+
+    function logLocalStorage() {
+        console.log(localStorage.getItem('projects'));
+    }
     
     function addTask(title = "New Task", description = "", dueDate = new Date().toISOString().split('T')[0], priority = "low", projectID) {
         const newTask = createToDo(title, description, dueDate, priority, false);
@@ -20,6 +43,7 @@ export const toDoManager = (function() {
                 }
             });
         }
+        saveToLocalStorage();
     }
 
     function removeTask(id) {
@@ -30,6 +54,7 @@ export const toDoManager = (function() {
                 console.log(`"${removedTaskTitle}" has been removed from "${project.title}"`);
             }
         }));
+        saveToLocalStorage();
     }
 
     function removeProject(id) {
@@ -40,6 +65,7 @@ export const toDoManager = (function() {
                 console.log(`"${removedProjectTitle}" has been removed`);
             }
         });
+        saveToLocalStorage();
     }
     
 
@@ -63,6 +89,7 @@ export const toDoManager = (function() {
                     default:
                         console.error('Invalid item');
                 }
+                saveToLocalStorage();
                 break;
             }
         }
@@ -81,6 +108,7 @@ export const toDoManager = (function() {
                 default:
                     console.error('Invalid item');
             }
+            saveToLocalStorage();
         } else {
             console.error('Project not found');
         }
@@ -93,6 +121,7 @@ export const toDoManager = (function() {
         removeTask(taskID);
         getProjectByID(projectID).tasks.push(task);
         console.log(`"${task.title}" has been moved to "${getProjectByID(projectID).title}"`);
+        saveToLocalStorage();
     }
 
     function getTaskByID(id) {
@@ -148,11 +177,13 @@ export const toDoManager = (function() {
 
         projects.push(newProject);
         console.log(`Project: "${newProject.title}" has been created with ID: ${newProject.id}`);
+        saveToLocalStorage();
 
         return newProject;
     }
 
     function getCurrentProject() {
+        console.log('Current project in getCurrentProject:', currentProject);
         return currentProject;
     }
 
@@ -180,6 +211,7 @@ export const toDoManager = (function() {
     }
 
     return {
+        saveToLocalStorage,
         getCurrentProject,
         setCurrentProject,
         getProjects,
@@ -195,6 +227,7 @@ export const toDoManager = (function() {
         moveTask,
         createProject,
         printTasks,
-        printProjects
+        printProjects,
+        logLocalStorage
     };
 })();   
